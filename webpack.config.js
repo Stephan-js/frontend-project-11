@@ -14,7 +14,7 @@ const config = {
         path: path.resolve(__dirname, 'public'),
     },
     devServer: {
-        static: path.resolve(__dirname, 'dist'),
+        static: path.resolve(__dirname, 'public'),
         open: true,
         host: 'localhost',
     },
