@@ -8,11 +8,9 @@
   <body class="d-flex flex-column min-vh-100">
     <div class="black">
       <div class="position-absolute position-absolute top-0 end-0">
-        <select class="form-select-sm form-control w-100" id="floatingSelect" aria-label="Floating label select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <select class="form-select-sm form-control" id="floatingSelect" aria-label="Floating label select example">
+          <option value="en" selected>English</option>
+          <option value="sp">Spanish</option>
         </select>
       </div>
     </div>
@@ -20,8 +18,8 @@
       <section class="container-fluid black p-5">
         <div class="row">
           <div class="col-md-10 col-lg-8 mx-auto text-white">
-            <h1 class="display-3 mb-0">RSS aggregator</h1>
-            <p class="lead">
+            <h1 class="display-3 mb-0" id="text-name">RSS aggregator</h1>
+            <p class="lead" id="text-discription">
               Start reading RSS today! It's easy, it's beautiful.
             </p>
             <form class="text-body" id="urls">
@@ -29,7 +27,7 @@
                 <div class="col">
                   <div class="form-floating">
                     <input id="url-input" class="form-control w-100" placeholder="RSS url">
-                    <label for="url-input">RSS url</label>
+                    <label for="url-input" id="text-url">RSS url</label>
                   </div>
                 </div>
                 <div class="col-auto">
@@ -37,7 +35,7 @@
                 </div>
               </div>
             </form>
-            <p class="mt-2 mb-0 gray">Example: https://justinpot.com/feed</p>
+            <p class="mt-2 mb-0 gray" id="text-expamle">Example: https://justinpot.com/feed</p>
             <p class="feedback m-9 position-absolute small">Nope</p>
           </div>
         </div>
