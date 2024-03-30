@@ -9,7 +9,8 @@ const renderP = () => {
   const textEx = document.querySelector('.text-expamle');
   const textF = document.querySelector('.text-feed');
   const textP = document.querySelector('.text-post');
-  console.log(textF)
+
+  const buttons = document.querySelectorAll('[type="button"]');
   
   textN.innerHTML = i18next.t('name');
   textD.innerHTML = i18next.t('discription');
@@ -17,9 +18,12 @@ const renderP = () => {
   textB.innerHTML = i18next.t('button');
   textEx.innerHTML = i18next.t('example');
   status.innerHTML = '';
-  if (textF && textP) {
+  if (textF && textP && buttons) {
     textF.innerHTML = i18next.t('feed');
     textP.innerHTML = i18next.t('post');
+    buttons.forEach((btn) => {
+      btn.innerHTML = i18next.t('btn-text');
+    });
   }
 };
 

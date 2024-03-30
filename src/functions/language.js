@@ -9,11 +9,12 @@ const languageSelector = () => {
         translation: {
           "succeses": "RSS aproved!",
           "name": "RSS aggregator",
-          "discription": "Start reading RSS today! It's easy, it's beautiful.",
+          "discription": "Start reading RSS today! It's easy, it's nicely.",
           "textUrl": "RSS url",
           "button": "Add",
           "feed": "Feeds",
           "post": "Posts",
+          "btn-text": "More",
           "example": "Example: https://justinpot.com/feed",
           "error": {
             "unspecific": "Oops, something went wrong!",
@@ -26,11 +27,12 @@ const languageSelector = () => {
         translation: {
           "succeses": "RSS aprobado!",
           "name": "Agregador RSS",
-          "discription": "¡Empiece a leer RSS hoy! Es fácil, es hermoso.",
+          "discription": "¡Empiece a leer RSS hoy! Es fácil, es bien.",
           "textUrl": "url RSS",
           "button": "Agregar",
           "feed": "Alimenta",
           "post": "Publicaciones",
+          "btn-text": "Más",
           "example": "Ejemplo: https://justinpot.com/feed",
           "error": {
             "unspecific": "¡Huy! Algo salió mal!",
@@ -48,6 +50,7 @@ const languageSelector = () => {
           "button": "Добавить",
           "feed": "Источники",
           "post": "Посты",
+          "btn-text": "Подробнее",
           "example": "Пример: https://justinpot.com/feed",
           "error": {
             "unspecific": "Упс, что-то пошло не так!",

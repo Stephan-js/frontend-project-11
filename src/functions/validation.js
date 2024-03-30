@@ -13,16 +13,16 @@ const validator = () => {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    string().url().nullable().validate(input.value)
-      .then((d) => {
-        if (!state.addedUrl.includes(d)) {
+    string().url().nullable().validate(input.value.trim())
+      .then((url) => {
+        if (!state.addedUrl.includes(url)) {
           input.setAttribute('class', 'form-control w-100');
           status.setAttribute('class', 'feedback m-9 position-absolute small text-success');
-          render(input.value);
+          render(url);
           input.value = '';
           input.focus();
           status.innerHTML = i18next.t('succeses');
-          state.addedUrl.push(d);
+          state.addedUrl.push(url);
         } else {
           throw new Error();
         }
