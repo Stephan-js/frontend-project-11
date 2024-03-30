@@ -12,6 +12,8 @@ const languageSelector = () => {
           "discription": "Start reading RSS today! It's easy, it's beautiful.",
           "textUrl": "RSS url",
           "button": "Add",
+          "feed": "Feeds",
+          "post": "Posts",
           "example": "Example: https://justinpot.com/feed",
           "error": {
             "unspecific": "Oops, something went wrong!",
@@ -27,6 +29,8 @@ const languageSelector = () => {
           "discription": "¡Empiece a leer RSS hoy! Es fácil, es hermoso.",
           "textUrl": "url RSS",
           "button": "Agregar",
+          "feed": "Alimenta",
+          "post": "Publicaciones",
           "example": "Ejemplo: https://justinpot.com/feed",
           "error": {
             "unspecific": "¡Huy! Algo salió mal!",
@@ -42,6 +46,8 @@ const languageSelector = () => {
           "discription": "Начните читать RSS сегодня! Это легко, это красиво.",
           "textUrl": "Ссылка RSS",
           "button": "Добавить",
+          "feed": "Источники",
+          "post": "Посты",
           "example": "Пример: https://justinpot.com/feed",
           "error": {
             "unspecific": "Упс, что-то пошло не так!",

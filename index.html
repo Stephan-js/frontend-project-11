@@ -18,8 +18,8 @@
       <section class="container-fluid black p-5">
         <div class="row">
           <div class="col-md-10 col-lg-8 mx-auto text-white">
-            <h1 class="display-3 mb-0" id="text-name">RSS aggregator</h1>
-            <p class="lead" id="text-discription">
+            <h1 class="display-3 mb-0 text-name">RSS aggregator</h1>
+            <p class="lead text-discription">
               Start reading RSS today! It's easy, it's beautiful.
             </p>
             <form class="text-body" id="urls">
@@ -27,21 +27,43 @@
                 <div class="col">
                   <div class="form-floating">
                     <input id="url-input" class="form-control w-100" placeholder="RSS url">
-                    <label for="url-input" id="text-url">RSS url</label>
+                    <label for="url-input" class="text-url">RSS url</label>
                   </div>
                 </div>
                 <div class="col-auto">
-                  <button class="h-100 btn btn-lg btn-primary px-sm-5" type="submit" aria-label="add" id="text-btn">Add</button>
+                  <button class="h-100 btn btn-lg btn-primary px-sm-5 text-btn" type="submit" aria-label="add">Add</button>
                 </div>
               </div>
             </form>
-            <p class="mt-2 mb-0 gray" id="text-expamle">Example: https://justinpot.com/feed</p>
-            <p class="feedback m-9 position-absolute small">Nope</p>
+            <p class="mt-2 mb-0 gray text-expamle">Example: https://justinpot.com/feed</p>
+            <p class="feedback m-9 position-absolute small"></p>
           </div>
         </div>
       </section>
       <section class="container-fluid container-xxl p-5">
         <div class="row">
+          <div class="col-md-10 col-lg-8 order-1 mx-auto posts">
+            <div class="card border-0">
+              <h2 class="card-title h4 text-post">Posts</h2>
+            </div>
+            <ul class="list-group border-0 rounded-0">
+              <li class="list-group-item d-flex justify-content-between align-items-start border-0 border-end-0">
+                <a href="https://justinpot.com/the-life-changing-magic-of-shutting-up/" class="fw-bold" data-id="2" target="_blank" rel="noopener noreferrer">The life changing magic of shutting up</a>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-id="2" data-bs-toggle="modal" data-bs-target="#modal">Просмотр</button>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds">
+            <div class="card border-0">
+              <h2 class="card-title h4 text-feed">Feeds</h2>
+            </div>
+            <ul class="list-group border-0 rounded-0">
+              <li class="list-group-item border-0 border-end-0">
+                <h3 class="h6 m-0">Justin Pot</h3>
+                <p class="m-0 small text-black-50">I can explain</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </main>
