@@ -1,8 +1,9 @@
 import i18next from 'i18next';
+import renderP from './render';
 
 const languageSelector = () => {
   i18next.init({
-    lng: navigator.language.slice(0, 2),
+    lng: 'en',
     resources: {
       en: {
         translation: {
@@ -10,6 +11,7 @@ const languageSelector = () => {
           "name": "RSS aggregator",
           "discription": "Start reading RSS today! It's easy, it's beautiful.",
           "textUrl": "RSS url",
+          "button": "Add",
           "example": "Example: https://justinpot.com/feed",
           "error": {
             "unspecific": "Oops, something went wrong!",
@@ -24,6 +26,7 @@ const languageSelector = () => {
           "name": "Agregador RSS",
           "discription": "¡Empiece a leer RSS hoy! Es fácil, es hermoso.",
           "textUrl": "url RSS",
+          "button": "Agregar",
           "example": "Ejemplo: https://justinpot.com/feed",
           "error": {
             "unspecific": "¡Huy! Algo salió mal!",
@@ -38,6 +41,7 @@ const languageSelector = () => {
           "name": "RSS агрегатор",
           "discription": "Начните читать RSS сегодня! Это легко, это красиво.",
           "textUrl": "Ссылка RSS",
+          "button": "Добавить",
           "example": "Пример: https://justinpot.com/feed",
           "error": {
             "unspecific": "Упс, что-то пошло не так!",
@@ -50,18 +54,25 @@ const languageSelector = () => {
   });
 
   const selector = document.querySelector('#floatingSelect');
-  const textN = document.querySelector('#text-name');
-  const textD = document.querySelector('#text-discription');
-  const textUrl = document.querySelector('#text-url');
-  const textEx = document.querySelector('#text-expamle');
+  const browserL = navigator.language.slice(0, 2);
+  const avlLng = ['en', 'sp'];
+  if (document.cookie === '' && avlLng.includes(browserL)) {
+    i18next.changeLanguage(browserL);
+    selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
+  } else if (document.cookie === '') {
+    selector.querySelector(`option[value="en"]`).setAttribute('selected', '');
+  } else {
+    const lng = document.cookie.split('=')[1];
+    i18next.changeLanguage(lng);
+    selector.querySelector(`option[value="${lng}"]`).setAttribute('selected', '');
+  }
+  renderP();
 
   selector.addEventListener('change', (e) => {
-    i18next.changeLanguage(e.target.value);
-    console.log(i18next.t('name'))
-    textN.innerHTML = i18next.t('name');
-    textD.innerHTML = i18next.t('discription');
-    textUrl.innerHTML = i18next.t('textUrl');
-    textEx.innerHTML = i18next.t('example');
+    const lang = e.target.value;
+    i18next.changeLanguage(lang);
+    document.cookie = `lng=${lang}; SameSite=Lax`;
+    renderP();
   });
 };
 
