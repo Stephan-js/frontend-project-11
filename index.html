@@ -5,7 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Getting Started</title>
   </head>
-  <body>
-    <h1>Hello</h1>
+  <body class="d-flex flex-column min-vh-100">
+    <main class="flex-grow-1">
+      <section class="container-fluid black p-5">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto text-white">
+            <h1 class="display-3 mb-0">RSS aggregator</h1>
+            <p class="lead">
+              Start reading RSS today! It's easy, it's beautiful.
+            </p>
+            <form class="text-body" id="urls">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input id="url-input" class="form-control w-100" placeholder="RSS url">
+                    <label for="url-input">RSS url</label>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button class="h-100 btn btn-lg btn-primary px-sm-5" type="submit" aria-label="add">Add</button>
+                </div>
+              </div>
+            </form>
+            <p class="mt-2 mb-0 gray">Example: https://lorem-rss.hexlet.app/feed</p>
+            <p class="feedback m-9 position-absolute small">Nope</p>
+          </div>
+        </div>
+      </section>
+      <section class="container-fluid container-xxl p-5">
+        <div class="row">
+        </div>
+      </section>
+    </main>
   </body>
 </html>
