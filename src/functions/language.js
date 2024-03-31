@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import renderP from './render';
+import renderP from './renderLng';
 
 const languageSelector = () => {
   i18next.init({
@@ -17,9 +17,10 @@ const languageSelector = () => {
           "btn-text": "More",
           "example": "Example: https://justinpot.com/feed",
           "error": {
+            "loading": "Sorry, we've problem with loading this RSS.",
             "unspecific": "Oops, something went wrong!",
             "ValidationError": "This must be a valid URL.",
-            "Error": "Sorry, but you can't add two same pades.",
+            "Error": "Sorry, but You can't add two same pades.",
           },
         } 
       },
@@ -45,7 +46,7 @@ const languageSelector = () => {
         translation: {
           "succeses": "RSS принят!",
           "name": "RSS агрегатор",
-          "discription": "Начните читать RSS сегодня! Это легко, это красиво.",
+          "discription": "Начните читать RSS сегодня! Это легко, это удобно.",
           "textUrl": "Ссылка RSS",
           "button": "Добавить",
           "feed": "Источники",
