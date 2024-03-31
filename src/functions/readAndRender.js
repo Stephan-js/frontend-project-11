@@ -69,7 +69,7 @@ class ReadAndRender {
         });
 
         this.renderF.start(this.state, true, true);
-        states.addedUrl.push(url);
+        states.addedUrl.push(href);
       })
       .catch((e) => {
         console.log(e)
