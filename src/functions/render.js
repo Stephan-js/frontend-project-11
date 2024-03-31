@@ -7,6 +7,7 @@ class Render {
     this.feedsUl.setAttribute('class', 'list-group border-0 rounded-0');
     this.postsUl.setAttribute('class', 'list-group border-0 rounded-0');
     
+    this.btn = document.querySelector('.text-btn');
     this.feeds = document.querySelector('.feeds');
     this.posts = document.querySelector('.posts');
     this.input = document.querySelector('#url-input');
@@ -18,6 +19,9 @@ class Render {
       this.input.setAttribute('class', 'form-control w-100 is-invalid');
       this.status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
       this.status.innerHTML = i18next.t('error.loading');
+
+      this.input.removeAttribute('disabled');
+      this.btn.removeAttribute('disabled');
       return;
     }
 
@@ -99,6 +103,9 @@ class Render {
     this.input.value = '';
     this.input.focus();
     this.status.innerHTML = i18next.t('succeses');
+
+    this.input.removeAttribute('disabled');
+    this.btn.removeAttribute('disabled');
   };
 }
 

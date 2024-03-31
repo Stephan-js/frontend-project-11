@@ -1,11 +1,5 @@
 import axios from 'axios';
-import i18next from 'i18next';
-import _ from 'lodash';
 import Render from './render';
-
-const btnFunction = () => {
-
-};
 
 class ReadAndRender {
   constructor() {
@@ -18,20 +12,16 @@ class ReadAndRender {
 
     this.logos = false;
     this.renderF = new Render();
-
-    this.ul = document.createElement('ul');
-    this.ul.setAttribute('class', 'list-group border-0 rounded-0');
-
-    this.feeds = document.querySelector('.feeds');
-    this.posts = document.querySelector('.posts');
     this.input = document.querySelector('#url-input');
-    this.status = document.querySelector('.feedback');
+    this.btn = document.querySelector('.text-btn');
   }
 
   render(url, states) {
     const href = new URL('/', url).href;
+    this.input.setAttribute('disabled', '');
+    this.btn.setAttribute('disabled', '');
   
-    axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`)
+    axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
       .then((d) => {
         const parser = new DOMParser();
         const data = parser.parseFromString(d.data.contents, 'text/html');
@@ -72,7 +62,7 @@ class ReadAndRender {
         states.addedUrl.push(href);
       })
       .catch((e) => {
-        console.log(e)
+        console.error(e);
         this.renderF.start(this.state, false, false);
     });
   };

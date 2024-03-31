@@ -24,7 +24,7 @@ const validator = () => {
         }
       })
       .catch((e) => {
-        console.log(e)
+        console.error(e);
         input.setAttribute('class', 'form-control w-100 is-invalid');
         status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
         status.innerHTML = i18next.t([`error.${e.name}`, 'error.unspecific']);

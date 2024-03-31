@@ -9,9 +9,11 @@ const renderP = () => {
   const textEx = document.querySelector('.text-expamle');
   const textF = document.querySelector('.text-feed');
   const textP = document.querySelector('.text-post');
+  const logo = document.querySelector('title');
 
   const buttons = document.querySelectorAll('[type="button"]');
   
+  logo.innerHTML = i18next.t('name');
   textN.innerHTML = i18next.t('name');
   textD.innerHTML = i18next.t('discription');
   textUrl.innerHTML = i18next.t('textUrl');
