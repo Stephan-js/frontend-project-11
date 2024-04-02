@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Render from './render/render.js';
-import { concat } from 'lodash';
 
 class ReadAndRender {
   constructor() {
@@ -15,6 +14,58 @@ class ReadAndRender {
     this.renderF = new Render();
     this.input = document.querySelector('#url-input');
     this.btn = document.querySelector('.text-btn');
+    this.autoUpdateSwitch = document.querySelector('#flexSwitchCheckDefault');
+  }
+
+  autoUpdate(url, lastUpdate, feedId) {
+    if (!this.autoUpdateSwitch.checked) {
+      window.setTimeout(() => this.autoUpdate(url, lastUpdate, feedId), 5000);
+      return;
+    }
+  
+    axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
+      .then((d) => {
+        const parser = new DOMParser();
+        const data = parser.parseFromString(d.data.contents, 'text/html');
+        const items = data.querySelectorAll('item');
+
+        items.forEach((item) => {
+          const date = new Date(item.querySelector('pubDate').innerHTML);
+
+          if (date.valueOf() > lastUpdate.valueOf()) {
+            const href = item.querySelector('link').nextSibling.data.trim();
+            const title = item.querySelector('title').innerHTML
+            .replace(this.regexF, '')
+            .replace(this.regexL, '');
+            const description = item.querySelector('description').innerHTML
+            .replace(this.regexF, '')
+            .replace(this.regexL, ''); 
+
+            // Get category
+            const categoryD = Array.from(item.querySelectorAll('category'));
+            const category = categoryD.map((el) => el.innerHTML
+            .replace(this.regexF, '')
+            .replace(this.regexL, '')
+            );
+
+            this.state.posts.push({
+              title: title,
+              href: href,
+              description: description,
+              date: date,
+              id: this.state.posts.length,
+              fId: feedId,
+              added: false,
+              category: (category.length === 0) ? 'Unknown' : category.join(', '),
+            });
+          }
+        });
+
+        const time = Date.now();
+        this.renderF.start(this.state, true, true);
+        setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
+      })
+      .catch();
   }
 
   render(url, states) {
@@ -33,21 +84,29 @@ class ReadAndRender {
 
         const lang = data.querySelector('language');
         const feedId = this.state.feeds.length;
-        const title = data.querySelector('title').innerHTML.replace(this.regexF, '');
-        const description = data.querySelector('description').innerHTML.replace(this.regexF, '');
+        const title = data.querySelector('title').innerHTML
+        .replace(this.regexF, '')
+        .replace(this.regexL, '');
+        const description = data.querySelector('description').innerHTML
+        .replace(this.regexF, '')
+        .replace(this.regexL, '');
         this.state.feeds.push({
           lng: (lang) ? lang.innerHTML : 'Unknown',
-          title: title.replace(this.regexL, ''),
+          title: title,
           href: href,
-          description: description.replace(this.regexL, ''),
+          description: description,
           id: feedId,
           added: false,
         });
 
         items.forEach((item) => {
           const href = item.querySelector('link').nextSibling.data.trim();
-          const title = item.querySelector('title').innerHTML.replace(this.regexF, '');
-          const description = item.querySelector('description').innerHTML.replace(this.regexF, '');
+          const title = item.querySelector('title').innerHTML
+          .replace(this.regexF, '')
+          .replace(this.regexL, '');
+          const description = item.querySelector('description').innerHTML
+          .replace(this.regexF, '')
+          .replace(this.regexL, '');
           const date = item.querySelector('pubDate').innerHTML;
 
           // Get category
@@ -58,9 +117,9 @@ class ReadAndRender {
           );
 
           this.state.posts.push({
-            title: title.replace(this.regexL, ''),
+            title: title,
             href: href,
-            description: description.replace(this.regexL, ''),
+            description: description,
             date: new Date(date),
             id: this.state.posts.length,
             fId: feedId,
@@ -71,6 +130,9 @@ class ReadAndRender {
 
         this.renderF.start(this.state, true, true);
         states.addedUrl.push(href);
+        const time = Date.now();
+
+        window.setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
       })
       .catch((e) => {
         console.error(e);

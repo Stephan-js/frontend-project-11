@@ -20,13 +20,13 @@ const addFToBtn = (post, btn, state) => {
   
     if (status === 'less') {
       const data = [];
-      data.push(`<p><b>Description</b>: ${post.description}</p>`);
-      data.push(`<p><b>Date Published</b>: 
+      data.push(`<p><b>${i18next.t('desc')}</b>: ${post.description}</p>`);
+      data.push(`<p><b>${i18next.t('date')}</b>: 
       ${new Intl.DateTimeFormat(navigator.language).format(post.date)}</p>`);
-      data.push(`<p><b>Feed</b>: ${state.feeds[post.fId].title}</p>`);
-      data.push(`<p><b>Category</b>: ${post.category}.</p>`);
-      data.push(`<p><b>Language</b>: ${state.feeds[post.fId].lng}</p>`);
-      data.push(`<p><b>Id</b>: ${post.id}</p>`);
+      data.push(`<p><b>${i18next.t('feed')}</b>: ${state.feeds[post.fId].title}</p>`);
+      data.push(`<p><b>${i18next.t('cate')}</b>: ${post.category}.</p>`);
+      data.push(`<p><b>${i18next.t('lng')}</b>: ${state.feeds[post.fId].lng}</p>`);
+      data.push(`<p><b>ID</b>: ${post.id}</p>`);
       data.push(`<p><b>URL</b>: <a href="${post.href}">${post.href}</a></p>`);
   
       mDesc.innerHTML = data.join('');
@@ -43,9 +43,6 @@ const addFToBtn = (post, btn, state) => {
 
   // Close function
   const closeBtnF = () => {
-    moreDetBtn.innerHTML = i18next.t('more-det');
-    moreDetBtn.setAttribute('data-btn-status', 'less');
-
     // Show cool animation
     alert.setAttribute('class', 'modal fade');
     backGroudn.setAttribute('class', 'modal-backdrop fade');
@@ -55,6 +52,8 @@ const addFToBtn = (post, btn, state) => {
       body.removeAttribute('style');
       alert.setAttribute('style',' display: none;');
       backGroudn.setAttribute('style', 'display: none;');
+      moreDetBtn.innerHTML = i18next.t('more-det');
+      moreDetBtn.setAttribute('data-btn-status', 'less');
       closeBtn.removeEventListener('click', closeBtnF);
       moreDetBtn.removeEventListener('click', moreLessBtnF);
     }, 100);
@@ -63,6 +62,7 @@ const addFToBtn = (post, btn, state) => {
   // "More" btn function
   btn.addEventListener('click', () => {
     // Set all data
+    const postHtml = document.querySelector(`a[data-id="${post.id}"]`);
     const description = post.description;
     const title = post.title;
     const href = post.href;
@@ -71,6 +71,7 @@ const addFToBtn = (post, btn, state) => {
     mTitle.innerHTML = title;
     mDesc.innerHTML = description;
     mHref.setAttribute('href', href);
+    postHtml.setAttribute('class', 'fw-normal text-body-secondary');
 
     // Open alert
 
@@ -85,7 +86,6 @@ const addFToBtn = (post, btn, state) => {
       backGroudn.setAttribute('class', 'modal-backdrop fade show');
     });
 
-    
     closeBtn.addEventListener('click', closeBtnF);
     moreDetBtn.addEventListener('click', moreLessBtnF);
   });

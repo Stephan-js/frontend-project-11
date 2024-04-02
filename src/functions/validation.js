@@ -18,7 +18,7 @@ const validator = () => {
       .then((d) => {
         const href = new URL('/', d).href;
         if (!state.addedUrl.includes(href)) {
-          render.render(d, state);
+          render.render(d, state, false);
         } else {
           throw new Error();
         }

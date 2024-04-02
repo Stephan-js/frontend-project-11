@@ -10,19 +10,26 @@ const renderP = () => {
   const textF = document.querySelector('.text-feed');
   const textP = document.querySelector('.text-post');
   const logo = document.querySelector('title');
+  const autoUpdateSwitch = document.querySelector('.text-switch');
 
   const buttons = document.querySelectorAll('.btn-sm');
+  const fullTextBtn = document.querySelector('.full-text');
+  const moreDetBtn = document.querySelector('.text-moreDet');
   
   logo.innerHTML = i18next.t('name');
   textN.innerHTML = i18next.t('name');
-  textD.innerHTML = i18next.t('discription');
+  textD.innerHTML = i18next.t('description');
   textUrl.innerHTML = i18next.t('textUrl');
   textB.innerHTML = i18next.t('button');
   textEx.innerHTML = i18next.t('example');
   status.innerHTML = '';
+  fullTextBtn.innerHTML = i18next.t('full-text');
+  moreDetBtn.innerHTML = i18next.t('more-det');
+  autoUpdateSwitch.innerHTML = i18next.t('auto-upt');
+
   if (textF && textP && buttons) {
-    textF.innerHTML = i18next.t('feed');
-    textP.innerHTML = i18next.t('post');
+    textF.innerHTML = i18next.t('feeds');
+    textP.innerHTML = i18next.t('posts');
     buttons.forEach((btn) => {
       btn.innerHTML = i18next.t('btn-text');
     });
