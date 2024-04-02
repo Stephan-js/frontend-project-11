@@ -1,5 +1,6 @@
 import axios from 'axios';
-import Render from './render';
+import Render from './render/render.js';
+import { concat } from 'lodash';
 
 class ReadAndRender {
   constructor() {
@@ -30,10 +31,12 @@ class ReadAndRender {
           throw new Error();
         }
 
+        const lang = data.querySelector('language');
         const feedId = this.state.feeds.length;
         const title = data.querySelector('title').innerHTML.replace(this.regexF, '');
         const description = data.querySelector('description').innerHTML.replace(this.regexF, '');
         this.state.feeds.push({
+          lng: (lang) ? lang.innerHTML : 'Unknown',
           title: title.replace(this.regexL, ''),
           href: href,
           description: description.replace(this.regexL, ''),
@@ -46,15 +49,23 @@ class ReadAndRender {
           const title = item.querySelector('title').innerHTML.replace(this.regexF, '');
           const description = item.querySelector('description').innerHTML.replace(this.regexF, '');
           const date = item.querySelector('pubDate').innerHTML;
-          
+
+          // Get category
+          const categoryD = Array.from(item.querySelectorAll('category'));
+          const category = categoryD.map((el) => el.innerHTML
+          .replace(this.regexF, '')
+          .replace(this.regexL, '')
+          );
+
           this.state.posts.push({
             title: title.replace(this.regexL, ''),
             href: href,
             description: description.replace(this.regexL, ''),
-            date: date,
+            date: new Date(date),
             id: this.state.posts.length,
             fId: feedId,
             added: false,
+            category: (category.length === 0) ? 'Unknown' : category,
           });
         });
 

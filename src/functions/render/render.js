@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import addFToBtn from '../btnFucntion.js';
 
 class Render {
   constructor() {
@@ -68,7 +69,7 @@ class Render {
       const a = document.createElement('a');
       a.setAttribute('href', post.href)
       a.setAttribute('class', 'fw-bold');
-      a.setAttribute('data-postId', post.id);
+      a.setAttribute('data-id', post.id);
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener noreferrer')
       a.innerHTML = post.title;
@@ -76,10 +77,11 @@ class Render {
       const btn = document.createElement('button');
       btn.setAttribute('type', 'button');
       btn.setAttribute('class', 'btn btn-outline-primary btn-sm');
-      btn.setAttribute('data-postId', post.id);
+      btn.setAttribute('data-id', post.id);
       btn.setAttribute('data-bs-toggle', 'modal');
       btn.setAttribute('data-bs-target', '#modal');
       btn.innerHTML = i18next.t('btn-text');
+      addFToBtn(post, btn, data);
   
       li.append(a);
       li.append(btn);

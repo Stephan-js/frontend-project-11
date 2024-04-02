@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import renderP from './renderLng';
+import renderP from './render/renderLng';
 
 const languageSelector = () => {
   i18next.init({
@@ -15,6 +15,8 @@ const languageSelector = () => {
           "feed": "Feeds",
           "post": "Posts",
           "btn-text": "More",
+          "more-det": "More Details",
+          "less-det": "Less Details",
           "example": "Example: https://justinpot.com/feed",
           "error": {
             "loading": "Sorry, we've problem with loading this RSS.",
@@ -34,6 +36,8 @@ const languageSelector = () => {
           "feed": "Alimenta",
           "post": "Publicaciones",
           "btn-text": "Más",
+          "more-det": "Más detalles",
+          "less-det": "Menos detalles",
           "example": "Ejemplo: https://justinpot.com/feed",
           "error": {
             "unspecific": "¡Huy! Algo salió mal!",
@@ -52,6 +56,8 @@ const languageSelector = () => {
           "feed": "Источники",
           "post": "Посты",
           "btn-text": "Подробнее",
+          "more-det": "Больше",
+          "less-det": "Меньше",
           "example": "Пример: https://justinpot.com/feed",
           "error": {
             "unspecific": "Упс, что-то пошло не так!",

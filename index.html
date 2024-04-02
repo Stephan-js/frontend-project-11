@@ -4,16 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RSS aggregator</title>
-    <link >
   </head>
   <body class="d-flex flex-column min-vh-100">
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Title</h5>
+            <button class="btn-close close" type="button" aria-level="Close"></button>
+          </div>
+          <div class="modal-body text-break">
+            Description
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary full-text" href="https://github.com/Stepan19999993" role="button" target="_blank" rel="noopener noreferrer">See full</a>
+            <button class="btn-secondary btn text-moreDet" type="button" data-btn-status="less">More Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <main class="flex-grow-1" style="display: none;">
       <div class="black">
-        <div class="position-absolute position-absolute top-0 end-0">
-          <select class="form-select-sm form-control" id="floatingSelect" aria-label="Floating label select example">
-            <option value="en">English</option>
-            <option value="sp">Spanish</option>
-          </select>
+        <div class="position-absolute top-0 end-0 ">
+          <div class="form-select-sm">
+            <select class="form-select-sm form-control" id="floatingSelect" aria-label="Floating label select example">
+              <option value="en">English</option>
+              <option value="sp">Spanish</option>
+            </select>
+          </div>
         </div>
       </div>
       <section class="container-fluid black p-5">
@@ -52,5 +70,6 @@
         </div>
       </section>
     </main>
+    <div class="modal-backdrop fade" style="display: none;"></div>
   </body>
 </html>

@@ -11,7 +11,7 @@ const renderP = () => {
   const textP = document.querySelector('.text-post');
   const logo = document.querySelector('title');
 
-  const buttons = document.querySelectorAll('[type="button"]');
+  const buttons = document.querySelectorAll('.btn-sm');
   
   logo.innerHTML = i18next.t('name');
   textN.innerHTML = i18next.t('name');
