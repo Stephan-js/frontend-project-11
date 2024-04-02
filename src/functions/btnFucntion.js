@@ -24,6 +24,7 @@ const addFToBtn = (post, btn, state) => {
       data.push(`<p><b>Date Published</b>: 
       ${new Intl.DateTimeFormat(navigator.language).format(post.date)}</p>`);
       data.push(`<p><b>Feed</b>: ${state.feeds[post.fId].title}</p>`);
+      data.push(`<p><b>Category</b>: ${post.category}.</p>`);
       data.push(`<p><b>Language</b>: ${state.feeds[post.fId].lng}</p>`);
       data.push(`<p><b>Id</b>: ${post.id}</p>`);
       data.push(`<p><b>URL</b>: <a href="${post.href}">${post.href}</a></p>`);

@@ -1,5 +1,4 @@
-import "./css/style.css";
-import "./css/bootstrap.min.css";
+import "./scss/style.scss";
 
 import validator from './functions/validation';
 import languageSelector from './functions/language';

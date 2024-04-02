@@ -65,7 +65,7 @@ class ReadAndRender {
             id: this.state.posts.length,
             fId: feedId,
             added: false,
-            category: (category.length === 0) ? 'Unknown' : category,
+            category: (category.length === 0) ? 'Unknown' : category.join(', '),
           });
         });
 
