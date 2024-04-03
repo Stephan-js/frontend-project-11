@@ -17,6 +17,12 @@ class ReadAndRender {
     this.autoUpdateSwitch = document.querySelector('#flexSwitchCheckDefault');
   }
 
+  fixText(text) {
+    return text
+      .replace(this.regexF, '')
+      .replace(this.regexL, '');
+  }
+
   autoUpdate(url, lastUpdate, feedId) {
     if (!this.autoUpdateSwitch.checked) {
       window.setTimeout(() => this.autoUpdate(url, lastUpdate, feedId), 5000);
@@ -34,19 +40,12 @@ class ReadAndRender {
 
           if (date.valueOf() > lastUpdate.valueOf()) {
             const href = item.querySelector('link').nextSibling.data.trim();
-            const title = item.querySelector('title').innerHTML
-            .replace(this.regexF, '')
-            .replace(this.regexL, '');
-            const description = item.querySelector('description').innerHTML
-            .replace(this.regexF, '')
-            .replace(this.regexL, ''); 
+            const title = this.fixText(item.querySelector('title').innerHTML);
+            const description = this.fixText(item.querySelector('description').innerHTML);
 
             // Get category
             const categoryD = Array.from(item.querySelectorAll('category'));
-            const category = categoryD.map((el) => el.innerHTML
-            .replace(this.regexF, '')
-            .replace(this.regexL, '')
-            );
+            const category = categoryD.map((el) => this.fixText(el.innerHTML));
 
             this.state.posts.push({
               title: title,
@@ -84,12 +83,9 @@ class ReadAndRender {
 
         const lang = data.querySelector('language');
         const feedId = this.state.feeds.length;
-        const title = data.querySelector('title').innerHTML
-        .replace(this.regexF, '')
-        .replace(this.regexL, '');
-        const description = data.querySelector('description').innerHTML
-        .replace(this.regexF, '')
-        .replace(this.regexL, '');
+        const title = this.fixText(data.querySelector('title').innerHTML);
+        const description = this.fixText(data.querySelector('description').innerHTML);
+
         this.state.feeds.push({
           lng: (lang) ? lang.innerHTML : 'Unknown',
           title: title,
@@ -101,12 +97,8 @@ class ReadAndRender {
 
         items.forEach((item) => {
           const href = item.querySelector('link').nextSibling.data.trim();
-          const title = item.querySelector('title').innerHTML
-          .replace(this.regexF, '')
-          .replace(this.regexL, '');
-          const description = item.querySelector('description').innerHTML
-          .replace(this.regexF, '')
-          .replace(this.regexL, '');
+          const title = this.fixText(item.querySelector('title').innerHTML);
+          const description = this.fixText(item.querySelector('description').innerHTML);
           const date = item.querySelector('pubDate').innerHTML;
 
           // Get category

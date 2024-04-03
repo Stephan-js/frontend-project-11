@@ -54,7 +54,7 @@ class Render {
       const logoH2 = document.createElement('h2');
       logoDiv.setAttribute('class', 'card border-0');
       logoH2.setAttribute('class', 'card-title h4 text-feed');
-      logoH2.innerHTML = i18next.t('feed');
+      logoH2.innerHTML = i18next.t('feeds');
 
       logoDiv.append(logoH2);
       this.feeds.prepend(logoDiv);
@@ -96,7 +96,7 @@ class Render {
     const logoHPosts = document.createElement('h2');
     logoPosts.setAttribute('class', 'card border-0');
     logoHPosts.setAttribute('class', 'card-title h4 text-post');
-    logoHPosts.innerHTML = i18next.t('post');
+    logoHPosts.innerHTML = i18next.t('posts');
     logoPosts.append(logoHPosts); 
     this.posts.prepend(logoPosts);
 

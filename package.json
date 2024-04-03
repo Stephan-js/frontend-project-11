@@ -39,9 +39,11 @@
     "@popperjs/core": "^2.11.8",
     "allorigins": "github:Hexlet/hexlet-allorigins",
     "axios": "^1.6.8",
+    "axios-https-proxy-fix": "^0.17.1",
     "bootstrap": "^5.3.3",
     "i18next": "^23.10.1",
     "lodash": "^4.17.21",
+    "tunnel": "^0.0.6",
     "yup": "^1.4.0"
   },
   "scripts": {
