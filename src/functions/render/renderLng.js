@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 
 const renderP = () => {
+  // Select all part on the page with text
   const status = document.querySelector('.feedback');
   const textB = document.querySelector('.text-btn');
   const textN = document.querySelector('.text-name');
@@ -12,10 +13,12 @@ const renderP = () => {
   const logo = document.querySelector('title');
   const autoUpdateSwitch = document.querySelector('.text-switch');
 
+  // Add buttons
   const buttons = document.querySelectorAll('.btn-sm');
   const fullTextBtn = document.querySelector('.full-text');
   const moreDetBtn = document.querySelector('.text-moreDet');
   
+  // Change values
   logo.innerHTML = i18next.t('name');
   textN.innerHTML = i18next.t('name');
   textD.innerHTML = i18next.t('description');
@@ -27,6 +30,7 @@ const renderP = () => {
   moreDetBtn.innerHTML = i18next.t('more-det');
   autoUpdateSwitch.innerHTML = i18next.t('auto-upt');
 
+  // Change values if text Feeds and Posts was added
   if (textF && textP && buttons) {
     textF.innerHTML = i18next.t('feeds');
     textP.innerHTML = i18next.t('posts');

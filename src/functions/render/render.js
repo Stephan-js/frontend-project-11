@@ -3,6 +3,7 @@ import addFToBtn from '../btnFucntion.js';
 
 class Render {
   constructor() {
+    // Defualt valueas
     this.feedsUl = document.createElement('ul');
     this.postsUl = document.createElement('ul');
     this.feedsUl.setAttribute('class', 'list-group border-0 rounded-0');
@@ -15,51 +16,61 @@ class Render {
     this.status = document.querySelector('.feedback');
   }
 
-  start(data, addLogos, status) {
+  // Start render
+  start(data, status) {
+    // If status === false => Error text
     if (!status) {
+      // Show Error
       this.input.setAttribute('class', 'form-control w-100 is-invalid');
       this.status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
       this.status.innerHTML = i18next.t('error.loading');
 
+      // Enable btn and input
       this.input.removeAttribute('disabled');
       this.btn.removeAttribute('disabled');
       return;
     }
 
-    if (addLogos) { 
-      const feedNeedAdd = data.feeds.filter((el) => !el.added).reverse();
-      feedNeedAdd.forEach((feed) => {
-        const li = document.createElement('li');
-        li.setAttribute('class', 'list-group-item border-0 border-end-0');
+    // Select feeds, what need add
+    const feedNeedAdd = data.feeds.filter((el) => !el.added).reverse();
+    // Add all feeds, what need to be added
+    feedNeedAdd.forEach((feed) => {
+      // Create all elements
+      const li = document.createElement('li');
+      li.setAttribute('class', 'list-group-item border-0 border-end-0');
 
-        const h3 = document.createElement('h3');
-        h3.setAttribute('class', 'h6 m-0');
-        h3.innerHTML = feed.title;
+      const h3 = document.createElement('h3');
+      h3.setAttribute('class', 'h6 m-0');
+      h3.innerHTML = feed.title;
 
-        const p = document.createElement('p');
-        p.setAttribute('class', 'm-0 small text-black-50');
-        p.innerHTML = feed.description;
+      const p = document.createElement('p');
+      p.setAttribute('class', 'm-0 small text-black-50');
+      p.innerHTML = feed.description;
 
-        li.append(h3);
-        li.append(p);
-        data.feeds[feed.id].added = true;
+      // Add they for list
+      li.append(h3);
+      li.append(p);
+      // Confirm what it was added
+      data.feeds[feed.id].added = true;
 
-        this.feedsUl.prepend(li);
-      });
+      this.feedsUl.prepend(li);
+    });
 
-      this.feeds.innerHTML = '';
-      this.feeds.append(this.feedsUl);
+    // Add feeds to real DOM
+    this.feeds.innerHTML = '';
+    this.feeds.append(this.feedsUl);
 
-      const logoDiv = document.createElement('div');
-      const logoH2 = document.createElement('h2');
-      logoDiv.setAttribute('class', 'card border-0');
-      logoH2.setAttribute('class', 'card-title h4 text-feed');
-      logoH2.innerHTML = i18next.t('feeds');
+    // Add logo (Feeds)
+    const logoDiv = document.createElement('div');
+    const logoH2 = document.createElement('h2');
+    logoDiv.setAttribute('class', 'card border-0');
+    logoH2.setAttribute('class', 'card-title h4 text-feed');
+    logoH2.innerHTML = i18next.t('feeds');
 
-      logoDiv.append(logoH2);
-      this.feeds.prepend(logoDiv);
-    }
+    logoDiv.append(logoH2);
+    this.feeds.prepend(logoDiv);
     
+    // Make same stuff for posts
     const postNeedAdd = data.posts.filter((el) => !el.added).reverse();
     postNeedAdd.forEach((post) => {
       const li = document.createElement('li');
@@ -90,8 +101,11 @@ class Render {
       this.postsUl.prepend(li);
     });
 
+    // Add posts
     this.posts.innerHTML = '';
     this.posts.append(this.postsUl);
+
+    // Add logo (Posts)
     const logoPosts = document.createElement('div');
     const logoHPosts = document.createElement('h2');
     logoPosts.setAttribute('class', 'card border-0');
@@ -106,6 +120,7 @@ class Render {
     this.input.focus();
     this.status.innerHTML = i18next.t('succeses');
 
+    // Enable input and btn
     this.input.removeAttribute('disabled');
     this.btn.removeAttribute('disabled');
   };

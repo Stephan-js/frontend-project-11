@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import renderP from './render/renderLng';
 
 const languageSelector = () => {
+  // init language model
   i18next.init({
     lng: 'en',
     resources: {
@@ -90,24 +91,35 @@ const languageSelector = () => {
     }
   });
 
+  // Select "Languge Selector"
   const selector = document.querySelector('#floatingSelect');
+  // Get broweser languge
   const browserL = navigator.language.slice(0, 2);
+  // Array of available languges
   const avlLng = ['en', 'sp'];
+
+  // Select broweser languge if we haven't cookie data and this languge available
   if (document.cookie === '' && avlLng.includes(browserL)) {
     i18next.changeLanguage(browserL);
     selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
+    // Select defualt languge - eng
   } else if (document.cookie === '') {
     selector.querySelector(`option[value="en"]`).setAttribute('selected', '');
   } else {
+    // Select languge what was in cookie
     const lng = document.cookie.split('=')[1];
     i18next.changeLanguage(lng);
     selector.querySelector(`option[value="${lng}"]`).setAttribute('selected', '');
   }
+
+  // Render Page
   renderP();
 
+  // Add action on change languge
   selector.addEventListener('change', (e) => {
     const lang = e.target.value;
     i18next.changeLanguage(lang);
+    // Add this languge to Cookie
     document.cookie = `lng=${lang}; SameSite=Lax`;
     renderP();
   });

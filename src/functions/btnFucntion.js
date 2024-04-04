@@ -86,6 +86,7 @@ const addFToBtn = (post, btn, state) => {
       backGroudn.setAttribute('class', 'modal-backdrop fade show');
     });
 
+    // Add events to buttons in alert
     closeBtn.addEventListener('click', closeBtnF);
     moreDetBtn.addEventListener('click', moreLessBtnF);
   });
