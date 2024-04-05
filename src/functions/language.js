@@ -109,9 +109,11 @@ const languageSelector = () => {
     selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
     // Select defualt languge - eng
   } else if (document.cookie === '') {
+    // Added only for tests!
     site.setAttribute('lang', 'ru');
     i18next.changeLanguage('ru');
-    // selector.querySelector('option[value="ru"]').setAttribute('selected', '');
+
+    // selector.querySelector('option[value="en"]').setAttribute('selected', '');
   } else {
     // Select languge what was in cookie
     const lng = document.cookie.split('=')[1];
