@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import i18next from 'i18next';
 import addFToBtn from '../btnFucntion.js';
 
@@ -8,7 +9,7 @@ class Render {
     this.postsUl = document.createElement('ul');
     this.feedsUl.setAttribute('class', 'list-group border-0 rounded-0');
     this.postsUl.setAttribute('class', 'list-group border-0 rounded-0');
-    
+
     this.btn = document.querySelector('.text-btn');
     this.feeds = document.querySelector('.feeds');
     this.posts = document.querySelector('.posts');
@@ -17,13 +18,14 @@ class Render {
   }
 
   // Start render
-  start(data, status) {
+  start(data, status, err) {
     // If status === false => Error text
     if (!status) {
       // Show Error
+      const error = (err.message === 'not-rss') ? 'not-rss' : 'loading';
       this.input.setAttribute('class', 'form-control w-100 is-invalid');
       this.status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
-      this.status.innerHTML = i18next.t('error.loading');
+      this.status.innerHTML = i18next.t(`error.${error}`);
 
       // Enable btn and input
       this.input.removeAttribute('disabled');
@@ -41,11 +43,11 @@ class Render {
 
       const h3 = document.createElement('h3');
       h3.setAttribute('class', 'h6 m-0');
-      h3.innerHTML = feed.title;
+      h3.innerHTML = feed.titleF;
 
       const p = document.createElement('p');
       p.setAttribute('class', 'm-0 small text-black-50');
-      p.innerHTML = feed.description;
+      p.innerHTML = feed.descriptionF;
 
       // Add they for list
       li.append(h3);
@@ -69,22 +71,21 @@ class Render {
 
     logoDiv.append(logoH2);
     this.feeds.prepend(logoDiv);
-    
+
     // Make same stuff for posts
     const postNeedAdd = data.posts.filter((el) => !el.added).reverse();
     postNeedAdd.forEach((post) => {
       const li = document.createElement('li');
-      li.setAttribute('class',
-      'list-group-item d-flex justify-content-between align-items-start border-0 border-end-0');
-          
+      li.setAttribute('class', 'list-group-item d-flex justify-content-between align-items-start border-0 border-end-0');
+
       const a = document.createElement('a');
-      a.setAttribute('href', post.href)
+      a.setAttribute('href', post.hrefP);
       a.setAttribute('class', 'fw-bold');
       a.setAttribute('data-id', post.id);
       a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener noreferrer')
+      a.setAttribute('rel', 'noopener noreferrer');
       a.innerHTML = post.title;
-  
+
       const btn = document.createElement('button');
       btn.setAttribute('type', 'button');
       btn.setAttribute('class', 'btn btn-outline-primary btn-sm');
@@ -93,11 +94,11 @@ class Render {
       btn.setAttribute('data-bs-target', '#modal');
       btn.innerHTML = i18next.t('btn-text');
       addFToBtn(post, btn, data);
-  
+
       li.append(a);
       li.append(btn);
       data.posts[post.id].added = true;
-  
+
       this.postsUl.prepend(li);
     });
 
@@ -111,7 +112,7 @@ class Render {
     logoPosts.setAttribute('class', 'card border-0');
     logoHPosts.setAttribute('class', 'card-title h4 text-post');
     logoHPosts.innerHTML = i18next.t('posts');
-    logoPosts.append(logoHPosts); 
+    logoPosts.append(logoHPosts);
     this.posts.prepend(logoPosts);
 
     this.input.setAttribute('class', 'form-control w-100');
@@ -123,7 +124,7 @@ class Render {
     // Enable input and btn
     this.input.removeAttribute('disabled');
     this.btn.removeAttribute('disabled');
-  };
+  }
 }
 
 export default Render;

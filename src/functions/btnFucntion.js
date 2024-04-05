@@ -17,18 +17,18 @@ const addFToBtn = (post, btn, state) => {
 
   const moreLessBtnF = (e) => {
     const status = e.target.getAttribute('data-btn-status');
-  
+
     if (status === 'less') {
       const data = [];
       data.push(`<p><b>${i18next.t('desc')}</b>: ${post.description}</p>`);
       data.push(`<p><b>${i18next.t('date')}</b>: 
       ${new Intl.DateTimeFormat(navigator.language).format(post.date)}</p>`);
-      data.push(`<p><b>${i18next.t('feed')}</b>: ${state.feeds[post.fId].title}</p>`);
+      data.push(`<p><b>${i18next.t('feed')}</b>: ${state.feeds[post.fId].titleF}</p>`);
       data.push(`<p><b>${i18next.t('cate')}</b>: ${post.category}.</p>`);
-      data.push(`<p><b>${i18next.t('lng')}</b>: ${state.feeds[post.fId].lng}</p>`);
+      data.push(`<p><b>${i18next.t('lng')}</b>: ${state.feeds[post.fId].lng}.</p>`);
       data.push(`<p><b>ID</b>: ${post.id}</p>`);
-      data.push(`<p><b>URL</b>: <a href="${post.href}">${post.href}</a></p>`);
-  
+      data.push(`<p><b>URL</b>: <a href="${post.hrefP}">${post.hrefP}</a></p>`);
+
       mDesc.innerHTML = data.join('');
 
       moreDetBtn.innerHTML = i18next.t('less-det');
@@ -50,7 +50,7 @@ const addFToBtn = (post, btn, state) => {
     // Make not cool changes
     window.setTimeout(() => {
       body.removeAttribute('style');
-      alert.setAttribute('style',' display: none;');
+      alert.setAttribute('style', ' display: none;');
       backGroudn.setAttribute('style', 'display: none;');
       moreDetBtn.innerHTML = i18next.t('more-det');
       moreDetBtn.setAttribute('data-btn-status', 'less');
@@ -63,10 +63,10 @@ const addFToBtn = (post, btn, state) => {
   btn.addEventListener('click', () => {
     // Set all data
     const postHtml = document.querySelector(`a[data-id="${post.id}"]`);
-    const description = post.description;
-    const title = post.title;
-    const href = post.href;
-    
+    const { description } = post;
+    const { title } = post;
+    const href = post.hrefP;
+
     // Set values
     mTitle.innerHTML = title;
     mDesc.innerHTML = description;
@@ -77,7 +77,7 @@ const addFToBtn = (post, btn, state) => {
 
     // Make not cool changes
     backGroudn.removeAttribute('style');
-    alert.setAttribute('style',' display: block;');
+    alert.setAttribute('style', ' display: block;');
     body.setAttribute('style', 'overflow: hidden; padding-right: 0px;');
 
     // Show cool animation

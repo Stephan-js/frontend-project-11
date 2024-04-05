@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import i18next from 'i18next';
 
 const renderP = () => {
@@ -17,7 +18,7 @@ const renderP = () => {
   const buttons = document.querySelectorAll('.btn-sm');
   const fullTextBtn = document.querySelector('.full-text');
   const moreDetBtn = document.querySelector('.text-moreDet');
-  
+
   // Change values
   logo.innerHTML = i18next.t('name');
   textN.innerHTML = i18next.t('name');
@@ -41,4 +42,3 @@ const renderP = () => {
 };
 
 export default renderP;
- 

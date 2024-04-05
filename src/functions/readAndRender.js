@@ -32,7 +32,7 @@ class ReadAndRender {
       window.setTimeout(() => this.autoUpdate(url, lastUpdate, feedId), 5000);
       return;
     }
-  
+
     // Make request
     axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
       .then((d) => {
@@ -56,10 +56,10 @@ class ReadAndRender {
 
             // Add to Array
             this.state.posts.push({
-              title: title,
-              href: href,
-              description: description,
-              date: date,
+              title,
+              href,
+              description,
+              date,
               id: this.state.posts.length,
               fId: feedId,
               added: false,
@@ -75,7 +75,7 @@ class ReadAndRender {
         // Render all changes
         if (changes) {
           this.renderF.start(this.state, true);
-        }  
+        }
         // Add next Timeout
         setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
       })
@@ -84,11 +84,11 @@ class ReadAndRender {
 
   // Render Function (do not make real render)
   render(url, states) {
-    const href = new URL('/', url).href;
+    const { href } = new URL('/', url);
     // Off btn and input
     this.input.setAttribute('disabled', '');
     this.btn.setAttribute('disabled', '');
-  
+
     // Make request
     axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
       .then((d) => {
@@ -99,21 +99,21 @@ class ReadAndRender {
 
         // Throw Error if, it'a empty
         if (items.length <= 0) {
-          throw new Error();
+          throw new Error('not-rss');
         }
 
         // Get feed data
         const lang = data.querySelector('language');
         const feedId = this.state.feeds.length;
-        const title = this.fixText(data.querySelector('title').innerHTML);
-        const description = this.fixText(data.querySelector('description').innerHTML);
+        const titleF = this.fixText(data.querySelector('title').innerHTML);
+        const descriptionF = this.fixText(data.querySelector('description').innerHTML);
 
         // Add feed data
         this.state.feeds.push({
           lng: (lang) ? lang.innerHTML : 'Unknown',
-          title: title,
-          href: href,
-          description: description,
+          titleF,
+          href,
+          descriptionF,
           id: feedId,
           added: false,
         });
@@ -121,7 +121,7 @@ class ReadAndRender {
         // Add each post
         items.forEach((item) => {
           // Get post data
-          const href = item.querySelector('link').nextSibling.data.trim();
+          const hrefP = item.querySelector('link').nextSibling.data.trim();
           const title = this.fixText(item.querySelector('title').innerHTML);
           const description = this.fixText(item.querySelector('description').innerHTML);
           const date = item.querySelector('pubDate').innerHTML;
@@ -132,9 +132,9 @@ class ReadAndRender {
 
           // Add post data
           this.state.posts.push({
-            title: title,
-            href: href,
-            description: description,
+            title,
+            hrefP,
+            description,
             date: new Date(date),
             id: this.state.posts.length,
             fId: feedId,
@@ -153,11 +153,10 @@ class ReadAndRender {
         // Start autoUpdate
         window.setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
       })
-      .catch((e) => {
-        console.error(e);
-        this.renderF.start(this.state, false);
-    });
-  };
-};
+      .catch((err) => {
+        this.renderF.start(this.state, false, err);
+      });
+  }
+}
 
 export default ReadAndRender;

@@ -1,6 +1,6 @@
 import { string } from 'yup';
 import i18next from 'i18next';
-import ReadAndRender from './readAndRender';
+import ReadAndRender from './readAndRender.js';
 
 const validator = () => {
   // Get all usefull data
@@ -20,7 +20,7 @@ const validator = () => {
     string().url().required().validate(input.value.trim())
       .then((d) => {
         // Get href (href not url)
-        const href = new URL('/', d).href;
+        const { href } = new URL('/', d);
         // Check on includes
         if (!state.addedUrl.includes(href)) {
           render.render(d, state, false);
@@ -29,12 +29,11 @@ const validator = () => {
           throw new Error();
         }
       })
-      .catch((e) => {
+      .catch((err) => {
         // Error stuff.
-        console.error(e);
         input.setAttribute('class', 'form-control w-100 is-invalid');
         status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
-        status.innerHTML = i18next.t([`error.${e.name}`, 'error.unspecific']);
+        status.innerHTML = i18next.t([`error.${err.name}`, 'error.unspecific']);
         input.focus();
       });
   });
