@@ -74,7 +74,7 @@ class ReadAndRender {
         const time = Date.now();
         // Render all changes
         if (changes) {
-          this.renderF.start(this.state, true);
+          this.renderF.start(this.state,false, true);
         }
         // Add next Timeout
         setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
@@ -144,7 +144,7 @@ class ReadAndRender {
         });
 
         // Start render
-        this.renderF.start(this.state, true);
+        this.renderF.start(this.state, true, true);
         // Add this href (href not url) to added list
         states.addedUrl.push(href);
         // Get now time
@@ -154,7 +154,7 @@ class ReadAndRender {
         window.setTimeout(() => this.autoUpdate(url, time, feedId), 5000);
       })
       .catch((err) => {
-        this.renderF.start(this.state, false, err);
+        this.renderF.start(this.state, false, false, err);
       });
   }
 }

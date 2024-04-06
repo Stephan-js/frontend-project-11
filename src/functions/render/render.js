@@ -18,7 +18,7 @@ class Render {
   }
 
   // Start render
-  start(data, status, err) {
+  start(data, addF, status, err) {
     // If status === false => Error text
     if (!status) {
       // Show Error
@@ -33,44 +33,46 @@ class Render {
       return;
     }
 
-    // Select feeds, what need add
-    const feedNeedAdd = data.feeds.filter((el) => !el.added).reverse();
-    // Add all feeds, what need to be added
-    feedNeedAdd.forEach((feed) => {
-      // Create all elements
-      const li = document.createElement('li');
-      li.setAttribute('class', 'list-group-item border-0 border-end-0');
+    if (addF) {
+      // Select feeds, what need add
+      const feedNeedAdd = data.feeds.filter((el) => !el.added).reverse();
+      // Add all feeds, what need to be added
+      feedNeedAdd.forEach((feed) => {
+        // Create all elements
+        const li = document.createElement('li');
+        li.setAttribute('class', 'list-group-item border-0 border-end-0');
 
-      const h3 = document.createElement('h3');
-      h3.setAttribute('class', 'h6 m-0');
-      h3.innerHTML = feed.titleF;
+        const h3 = document.createElement('h3');
+        h3.setAttribute('class', 'h6 m-0');
+        h3.innerHTML = feed.titleF;
 
-      const p = document.createElement('p');
-      p.setAttribute('class', 'm-0 small text-black-50');
-      p.innerHTML = feed.descriptionF;
+        const p = document.createElement('p');
+        p.setAttribute('class', 'm-0 small text-black-50');
+        p.innerHTML = feed.descriptionF;
 
-      // Add they for list
-      li.append(h3);
-      li.append(p);
-      // Confirm what it was added
-      data.feeds[feed.id].added = true;
+        // Add they for list
+        li.append(h3);
+        li.append(p);
+        // Confirm what it was added
+        data.feeds[feed.id].added = true;
 
-      this.feedsUl.prepend(li);
-    });
+        this.feedsUl.prepend(li);
+      });
 
-    // Add feeds to real DOM
-    this.feeds.innerHTML = '';
-    this.feeds.append(this.feedsUl);
+      // Add feeds to real DOM
+      this.feeds.innerHTML = '';
+      this.feeds.append(this.feedsUl);
 
-    // Add logo (Feeds)
-    const logoDiv = document.createElement('div');
-    const logoH2 = document.createElement('h2');
-    logoDiv.setAttribute('class', 'card border-0');
-    logoH2.setAttribute('class', 'card-title h4 text-feed');
-    logoH2.innerHTML = i18next.t('feeds');
+      // Add logo (Feeds)
+      const logoDiv = document.createElement('div');
+      const logoH2 = document.createElement('h2');
+      logoDiv.setAttribute('class', 'card border-0');
+      logoH2.setAttribute('class', 'card-title h4 text-feed');
+      logoH2.innerHTML = i18next.t('feeds');
 
-    logoDiv.append(logoH2);
-    this.feeds.prepend(logoDiv);
+      logoDiv.append(logoH2);
+      this.feeds.prepend(logoDiv);
+    };
 
     // Make same stuff for posts
     const postNeedAdd = data.posts.filter((el) => !el.added).reverse();
