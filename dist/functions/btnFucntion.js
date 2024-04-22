@@ -34,7 +34,7 @@ const addFToBtn = (post, btn, state) => {
       moreDetBtn.innerHTML = i18next.t('less-det');
       moreDetBtn.setAttribute('data-btn-status', 'more');
     } else {
-      mDesc.innerHTML = post.description;
+      mDesc.innerText = post.description;
 
       moreDetBtn.innerHTML = i18next.t('more-det');
       moreDetBtn.setAttribute('data-btn-status', 'less');
@@ -68,8 +68,8 @@ const addFToBtn = (post, btn, state) => {
     const href = post.hrefP;
 
     // Set values
-    mTitle.innerHTML = title;
-    mDesc.innerHTML = description;
+    mTitle.innerText = title;
+    mDesc.innerText = description;
     mHref.setAttribute('href', href);
     postHtml.setAttribute('class', 'fw-normal text-body-secondary');
 

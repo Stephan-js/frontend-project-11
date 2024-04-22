@@ -44,11 +44,11 @@ class Render {
 
         const h3 = document.createElement('h3');
         h3.setAttribute('class', 'h6 m-0');
-        h3.innerHTML = feed.titleF;
+        h3.innerText = feed.titleF;
 
         const p = document.createElement('p');
         p.setAttribute('class', 'm-0 small text-black-50');
-        p.innerHTML = feed.descriptionF;
+        p.innerText = feed.descriptionF;
 
         // Add they for list
         li.append(h3);
@@ -86,7 +86,7 @@ class Render {
       a.setAttribute('data-id', post.id);
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener noreferrer');
-      a.innerHTML = post.title;
+      a.innerText = post.title;
 
       const btn = document.createElement('button');
       btn.setAttribute('type', 'button');
