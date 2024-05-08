@@ -19,7 +19,7 @@ const eng = {
     'less-det': 'Less Details',
     example: 'Example: https://justinpot.com/feed',
     error: {
-      loading: "Sorry, we've problem with loading this RSS.",
+      loading: "Sorry, we have problem with loading this RSS.",
       'not-rss': "Sorry, this URL haven't any RSS.",
       unspecific: 'Oops, something went wrong!',
       ValidationError: 'This must be a valid URL.',
