@@ -346,7 +346,7 @@ const app = () => {
 
         // Render all changes
         if (changes) {
-          render(state, false, true);
+          render(true, state);
         }
 
         // Get currect time (last update time)
