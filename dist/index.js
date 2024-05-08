@@ -1,8 +1,5 @@
 import './scss/style.scss';
+import app from './src/app.js';
 
-import validator from './src/validation.js';
-import languageSelector from './src/language.js';
-
+app();
 document.querySelector('main').removeAttribute('style');
-languageSelector();
-window.setTimeout(() => validator());
