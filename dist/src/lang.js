@@ -19,7 +19,7 @@ const eng = {
     'less-det': 'Less Details',
     example: 'Example: https://justinpot.com/feed',
     error: {
-      loading: "Sorry, we have problem with loading this RSS.",
+      loading: 'Sorry, we have problem with loading this RSS.',
       'not-rss': "Sorry, this URL haven't any RSS.",
       unspecific: 'Oops, something went wrong!',
       ValidationError: 'This must be a valid URL.',
@@ -51,7 +51,7 @@ const esp = {
     error: {
       loading: 'Lo sentimos, tenemos problemas al cargar este RSS.',
       unspecific: '¡Huy! Algo salió mal!',
-      'not-rss': "Lo sentimos, esta URL no tiene ningún RSS.",
+      'not-rss': 'Lo sentimos, esta URL no tiene ningún RSS.',
       ValidationError: 'Por favor ingrese un enlace válido.',
       exist: 'Lo sentimos, pero no puedes agregar dos RSS iguales.',
     },

@@ -4,7 +4,7 @@ import { string } from 'yup';
 import axios from 'axios';
 
 // Custom stuff
-import { eng, esp, rus } from './lang.js'
+import { eng, esp, rus } from './lang';
 import allElements from './elements';
 
 const app = () => {
@@ -56,18 +56,15 @@ const app = () => {
   //         --------  FUNCTION PART  --------
 
   // Fix artefact from parser
-  const fixText = (text) => {
-    return text
-      .replace(/^(<|&lt;)!-*\[CDATA\[/g, '')
-      .replace(/\]\]-*(>|&gt;)$/g, '');
-  };
+  const fixText = (text) => text
+    .replace(/^(<|&lt;)!-*\[CDATA\[/g, '')
+    .replace(/\]\]-*(>|&gt;)$/g, '');
 
   // Add function for button (more)
-  const addFToBtn = (post, btn, state) => {
+  const addFToBtn = (post, btn, states) => {
     // Other Buttons
     const closeBtn = document.querySelector('.btn-close');
-    const moreDetBtn = document.querySelector('.text-moreDet');
-  
+
     // All text and background
     const mTitle = document.querySelector('.modal-title');
     const mDesc = document.querySelector('.modal-body');
@@ -75,39 +72,39 @@ const app = () => {
     const body = document.querySelector('body');
     const alert = document.querySelector('#modal');
     const backGroudn = document.querySelector('.modal-backdrop');
-  
+
     const moreLessBtnF = (e) => {
-      const status = e.target.getAttribute('data-btn-status');
-  
-      if (status === 'less') {
+      const statuss = e.target.getAttribute('data-btn-status');
+
+      if (statuss === 'less') {
         const data = [];
         data.push(`<p><b>${i18next.t('desc')}</b>: ${post.description}</p>`);
         data.push(`<p><b>${i18next.t('date')}</b>: 
         ${new Intl.DateTimeFormat(navigator.language).format(post.date)}</p>`);
-        data.push(`<p><b>${i18next.t('feed')}</b>: ${state.feeds[post.fId].titleF}</p>`);
+        data.push(`<p><b>${i18next.t('feed')}</b>: ${states.feeds[post.fId].titleF}</p>`);
         data.push(`<p><b>${i18next.t('cate')}</b>: ${post.category}.</p>`);
-        data.push(`<p><b>${i18next.t('lng')}</b>: ${state.feeds[post.fId].lng}.</p>`);
+        data.push(`<p><b>${i18next.t('lng')}</b>: ${states.feeds[post.fId].lng}.</p>`);
         data.push(`<p><b>ID</b>: ${post.id}</p>`);
         data.push(`<p><b>URL</b>: <a href="${post.hrefP}">${post.hrefP}</a></p>`);
-  
+
         mDesc.innerHTML = data.join('');
-  
+
         moreDetBtn.innerHTML = i18next.t('less-det');
         moreDetBtn.setAttribute('data-btn-status', 'more');
       } else {
         mDesc.innerHTML = post.description;
-  
+
         moreDetBtn.innerHTML = i18next.t('more-det');
         moreDetBtn.setAttribute('data-btn-status', 'less');
       }
     };
-  
+
     // Close function
     const closeBtnF = () => {
       // Show cool animation
       alert.setAttribute('class', 'modal fade');
       backGroudn.setAttribute('class', 'modal-backdrop fade');
-  
+
       // Make not cool changes
       window.setTimeout(() => {
         body.removeAttribute('style');
@@ -119,7 +116,7 @@ const app = () => {
         moreDetBtn.removeEventListener('click', moreLessBtnF);
       }, 100);
     };
-  
+
     // "More" btn function
     btn.addEventListener('click', () => {
       // Set all data
@@ -127,26 +124,26 @@ const app = () => {
       const { description } = post;
       const { title } = post;
       const href = post.hrefP;
-  
+
       // Set values
       mTitle.innerHTML = title;
       mDesc.innerHTML = description;
       mHref.setAttribute('href', href);
       postHtml.setAttribute('class', 'fw-normal text-body-secondary');
-  
+
       // Open alert
-  
+
       // Make not cool changes
       backGroudn.removeAttribute('style');
       alert.setAttribute('style', ' display: block;');
       body.setAttribute('style', 'overflow: hidden; padding-right: 0px;');
-  
+
       // Show cool animation
       window.setTimeout(() => {
         alert.setAttribute('class', 'modal fade show');
         backGroudn.setAttribute('class', 'modal-backdrop fade show');
       });
-  
+
       // Add events to buttons in alert
       closeBtn.addEventListener('click', closeBtnF);
       moreDetBtn.addEventListener('click', moreLessBtnF);
@@ -172,13 +169,14 @@ const app = () => {
     fullTextBtn.innerHTML = i18next.t('full-text');
     moreDetBtn.innerHTML = i18next.t('more-det');
     autoUpdateSwitchT.innerHTML = i18next.t('auto-upt');
-  
+
     // Change values if text Feeds and Posts was added
     if (textF && textP && buttons) {
       textF.innerHTML = i18next.t('feeds');
       textP.innerHTML = i18next.t('posts');
       buttons.forEach((btn) => {
-        btn.innerHTML = i18next.t('btn-text');
+        const button = btn;
+        button.innerHTML = i18next.t('btn-text');
       });
     }
   };
@@ -190,7 +188,6 @@ const app = () => {
       // Show Error
       input.setAttribute('class', 'form-control w-100 is-invalid');
       status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
-      console.error(data);
       status.innerHTML = i18next.t(`error.${data}`);
 
       // Enable btn and input
@@ -221,7 +218,8 @@ const app = () => {
         li.append(h3);
         li.append(p);
         // Confirm what it was added
-        data.feeds[feed.id].added = true;
+        const data2 = data;
+        data2.feeds[feed.id].added = true;
 
         feedsUl.prepend(li);
       });
@@ -239,13 +237,16 @@ const app = () => {
 
       logoDiv.append(logoH2);
       feeds.prepend(logoDiv);
-    };
+    }
 
     // Make same stuff for posts
     const postNeedAdd = data.posts.filter((el) => !el.added).reverse();
     postNeedAdd.forEach((post) => {
       const li = document.createElement('li');
-      li.setAttribute('class', 'list-group-item d-flex justify-content-between align-items-start border-0 border-end-0');
+      li.setAttribute(
+        'class',
+        'list-group-item d-flex justify-content-between align-items-start border-0 border-end-0',
+      );
 
       const a = document.createElement('a');
       a.setAttribute('href', post.hrefP);
@@ -266,7 +267,9 @@ const app = () => {
 
       li.append(a);
       li.append(btn);
-      data.posts[post.id].added = true;
+
+      const data2 = data;
+      data2.posts[post.id].added = true;
 
       postsUl.prepend(li);
     });
@@ -293,7 +296,7 @@ const app = () => {
     // Enable input and btn
     input.removeAttribute('disabled');
     textB.removeAttribute('disabled');
-  }
+  };
 
   //        ----- SELECTOR PART -----
 
@@ -368,19 +371,18 @@ const app = () => {
         const { href } = new URL('/', url);
         if (!state.addedUrl.includes(href)) {
           axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
-          .then((d) => {
+            .then((d) => {
             // Use parser to data
-            const data = parser.parseFromString(d.data.contents, 'text/html');
-            // select all data
-            const items = data.querySelectorAll('item');
+              const data = parser.parseFromString(d.data.contents, 'text/html');
+              // select all data
+              const items = data.querySelectorAll('item');
 
-            // Throw Error if, it'a empty
-            if (items.length <= 0) {
-              render(false, 'not-rss');
-              return;
-            }
+              // Throw Error if, it'a empty
+              if (items.length <= 0) {
+                render(false, 'not-rss');
+                return;
+              }
 
-            try {
               // Get feed data
               const lang = data.querySelector('language');
               const feedId = state.feeds.length;
@@ -396,50 +398,49 @@ const app = () => {
                 id: feedId,
                 added: false,
               });
-
-            
-              // Add each post
-              items.forEach((item) => {
+              try {
+                // Add each post
+                items.forEach((item) => {
                 // Get post data
-                const hrefP = item.querySelector('link').nextSibling.data.trim();
-                const title = fixText(item.querySelector('title').innerHTML);
-                const description = fixText(item.querySelector('description').innerHTML);
-                const date = item.querySelector('pubDate').innerHTML;
+                  const hrefP = item.querySelector('link').nextSibling.data.trim();
+                  const title = fixText(item.querySelector('title').innerHTML);
+                  const description = fixText(item.querySelector('description').innerHTML);
+                  const date = item.querySelector('pubDate').innerHTML;
 
-                // Get category
-                const categoryD = Array.from(item.querySelectorAll('category'));
-                const category = categoryD.map((el) => fixText(el.innerHTML));
+                  // Get category
+                  const categoryD = Array.from(item.querySelectorAll('category'));
+                  const category = categoryD.map((el) => fixText(el.innerHTML));
 
-                // Add post data
-                state.posts.push({
-                  title,
-                  hrefP,
-                  description,
-                  date: new Date(date),
-                  id: state.posts.length,
-                  fId: feedId,
-                  added: false,
-                  category: (category.length === 0) ? 'Unknown' : category.join(', '),
+                  // Add post data
+                  state.posts.push({
+                    title,
+                    hrefP,
+                    description,
+                    date: new Date(date),
+                    id: state.posts.length,
+                    fId: feedId,
+                    added: false,
+                    category: (category.length === 0) ? 'Unknown' : category.join(', '),
+                  });
                 });
-              });
-            } catch {
-              render(false, 'not-rss');
-              return;
-            }
+              } catch {
+                render(false, 'not-rss');
+                return;
+              }
 
-            // Start render
-            render(true, state, true);
-            // Add this href (href not url) to added list
-            state.addedUrl.push(href);
+              // Start render
+              render(true, state, true);
+              // Add this href (href not url) to added list
+              state.addedUrl.push(href);
 
-            // Get now time
-            const time = Date.now();
-            // Start autoUpdate
-            window.setTimeout(() => autoUpdate(url, time, feedId), 5000);
-          })
-          .catch(() => {
-            render(false, 'loading');
-          });
+              // Get now time
+              const time = Date.now();
+              // Start autoUpdate
+              window.setTimeout(() => autoUpdate(url, time, feedId), 5000);
+            })
+            .catch(() => {
+              render(false, 'loading');
+            });
         } else {
           render(false, 'exist');
         }
