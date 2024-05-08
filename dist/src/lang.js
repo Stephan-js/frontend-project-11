@@ -20,10 +20,10 @@ const eng = {
     example: 'Example: https://justinpot.com/feed',
     error: {
       loading: "Sorry, we've problem with loading this RSS.",
-      'not-rss': "Sorry, this url haven't any RSS.",
+      'not-rss': "Sorry, this URL haven't any RSS.",
       unspecific: 'Oops, something went wrong!',
       ValidationError: 'This must be a valid URL.',
-      Error: "Sorry, but You can't add two same pades.",
+      exist: "Sorry, but You can't add two same RSS.",
     },
   },
 };
@@ -49,9 +49,11 @@ const esp = {
     'less-det': 'Menos detalles',
     example: 'Ejemplo: https://justinpot.com/feed',
     error: {
+      loading: 'Lo sentimos, tenemos problemas al cargar este RSS.',
       unspecific: '¡Huy! Algo salió mal!',
+      'not-rss': "Lo sentimos, esta URL no tiene ningún RSS.",
       ValidationError: 'Por favor ingrese un enlace válido.',
-      Error: 'Lo sentimos, pero no puedes agregar dos páginas iguales.',
+      exist: 'Lo sentimos, pero no puedes agregar dos RSS iguales.',
     },
   },
 };
@@ -77,14 +79,13 @@ const rus = {
     'less-det': 'Сложить',
     example: 'Пример: https://justinpot.com/feed',
     error: {
-      loading: "Ошибка сети",
-      'not-rss': "Ресурс не содержит валидный RSS",
+      loading: 'Ошибка сети',
+      'not-rss': 'Ресурс не содержит валидный RSS',
       unspecific: 'Упс, что-то пошло не так!',
       ValidationError: 'Ссылка должна быть валидным URL',
-      Error: 'RSS уже существует',
+      exist: 'RSS уже существует',
     },
   },
 };
 
 export { eng, esp, rus };
-

@@ -95,7 +95,7 @@ const app = () => {
         moreDetBtn.innerHTML = i18next.t('less-det');
         moreDetBtn.setAttribute('data-btn-status', 'more');
       } else {
-        mDesc.innerText = post.description;
+        mDesc.innerHTML = post.description;
   
         moreDetBtn.innerHTML = i18next.t('more-det');
         moreDetBtn.setAttribute('data-btn-status', 'less');
@@ -129,8 +129,8 @@ const app = () => {
       const href = post.hrefP;
   
       // Set values
-      mTitle.innerText = title;
-      mDesc.innerText = description;
+      mTitle.innerHTML = title;
+      mDesc.innerHTML = description;
       mHref.setAttribute('href', href);
       postHtml.setAttribute('class', 'fw-normal text-body-secondary');
   
@@ -190,7 +190,7 @@ const app = () => {
       // Show Error
       input.setAttribute('class', 'form-control w-100 is-invalid');
       status.setAttribute('class', 'feedback m-9 position-absolute small text-danger');
-      console.log(data);
+      console.error(data);
       status.innerHTML = i18next.t(`error.${data}`);
 
       // Enable btn and input
@@ -380,46 +380,52 @@ const app = () => {
               return;
             }
 
-            // Get feed data
-            const lang = data.querySelector('language');
-            const feedId = state.feeds.length;
-            const titleF = fixText(data.querySelector('title').innerHTML);
-            const descriptionF = fixText(data.querySelector('description').innerHTML);
+            try {
+              // Get feed data
+              const lang = data.querySelector('language');
+              const feedId = state.feeds.length;
+              const titleF = fixText(data.querySelector('title').innerHTML);
+              const descriptionF = fixText(data.querySelector('description').innerHTML);
 
-            // Add feed data
-            state.feeds.push({
-              lng: (lang) ? lang.innerHTML : 'Unknown',
-              titleF,
-              href,
-              descriptionF,
-              id: feedId,
-              added: false,
-            });
-
-            // Add each post
-            items.forEach((item) => {
-              // Get post data
-              const hrefP = item.querySelector('link').nextSibling.data.trim();
-              const title = fixText(item.querySelector('title').innerHTML);
-              const description = fixText(item.querySelector('description').innerHTML);
-              const date = item.querySelector('pubDate').innerHTML;
-
-              // Get category
-              const categoryD = Array.from(item.querySelectorAll('category'));
-              const category = categoryD.map((el) => fixText(el.innerHTML));
-
-              // Add post data
-              state.posts.push({
-                title,
-                hrefP,
-                description,
-                date: new Date(date),
-                id: state.posts.length,
-                fId: feedId,
+              // Add feed data
+              state.feeds.push({
+                lng: (lang) ? lang.innerHTML : 'Unknown',
+                titleF,
+                href,
+                descriptionF,
+                id: feedId,
                 added: false,
-                category: (category.length === 0) ? 'Unknown' : category.join(', '),
               });
-            });
+
+            
+              // Add each post
+              items.forEach((item) => {
+                // Get post data
+                const hrefP = item.querySelector('link').nextSibling.data.trim();
+                const title = fixText(item.querySelector('title').innerHTML);
+                const description = fixText(item.querySelector('description').innerHTML);
+                const date = item.querySelector('pubDate').innerHTML;
+
+                // Get category
+                const categoryD = Array.from(item.querySelectorAll('category'));
+                const category = categoryD.map((el) => fixText(el.innerHTML));
+
+                // Add post data
+                state.posts.push({
+                  title,
+                  hrefP,
+                  description,
+                  date: new Date(date),
+                  id: state.posts.length,
+                  fId: feedId,
+                  added: false,
+                  category: (category.length === 0) ? 'Unknown' : category.join(', '),
+                });
+              });
+            } catch {
+              render(false, 'not-rss');
+              return;
+            }
 
             // Start render
             render(true, state, true);
@@ -430,9 +436,12 @@ const app = () => {
             const time = Date.now();
             // Start autoUpdate
             window.setTimeout(() => autoUpdate(url, time, feedId), 5000);
+          })
+          .catch(() => {
+            render(false, 'loading');
           });
         } else {
-          render(false, 'loading');
+          render(false, 'exist');
         }
       })
       .catch((err) => {
