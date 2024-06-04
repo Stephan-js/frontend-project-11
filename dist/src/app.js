@@ -462,13 +462,16 @@ const app = () => {
     renderP();
   });
 
-  // Get broweser languge
-  const browserL = navigator.language.slice(0, 2);
-  // Array of available languges
-  const avlLng = ['en', 'sp'];
+  //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //    !!!!!!!!!!!!!!!!!!!!!!!! FOR LAST DEPLOY !!!!!!!!!!!!!!!!!!!!!!!!
+  //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  // Select broweser languge if we haven't cookie data and this languge available
-  //    !!!! For lest deploy !!!!
+  // // Get broweser languge
+  // const browserL = navigator.language.slice(0, 2);
+  // // Array of available languges
+  // const avlLng = ['en', 'sp'];
+
+  // // Select broweser languge if we haven't cookie data and this languge available
 
   // if (document.cookie === '' && !avlLng.includes(browserL)) {
   //   site.setAttribute('lang', browserL);

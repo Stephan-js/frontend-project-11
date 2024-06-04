@@ -76,7 +76,7 @@ const rus = {
     posts: 'Посты',
     'btn-text': 'Просмотр',
     'more-det': 'Развернуть',
-    'less-det': 'Закрыть',
+    'less-det': 'Сложить',
     example: 'Пример: https://justinpot.com/feed',
     error: {
       loading: 'Ошибка сети',
