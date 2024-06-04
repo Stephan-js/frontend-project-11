@@ -490,6 +490,7 @@ const app = () => {
 
   // Last prepare and... Done!
   renderP();
+  document.querySelector('main').removeAttribute('style');
   input.focus();
 };
 
