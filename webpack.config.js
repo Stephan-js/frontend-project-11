@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const devMode = process.env.NODE_ENV !== 'production';
 
 const config = {
-  entry: './dist/index.js',
+  entry: './index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'public'),
@@ -19,7 +19,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      favicon: './dist/img/favicon.png',
+      favicon: './img/favicon.png',
     }),
   ].concat(devMode ? [] : [new MiniCssExtractPlugin()]),
 
