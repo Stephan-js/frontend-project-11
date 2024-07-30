@@ -338,7 +338,9 @@ const app = () => {
     }
 
     // Make request
-    axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
+    const proxy = new URL('https://allorigins.hexlet.app/get');
+    proxy.search = `url=${encodeURIComponent(url)}&disableCache=true`;
+    axios.get(proxy)
       .then((d) => {
         let changes = false;
         const data = parser.parseFromString(d.data.contents, 'text/html');
@@ -396,8 +398,10 @@ const app = () => {
     string().url().required().validate(input.value.trim())
       .then((url) => {
         const { href } = new URL('/', url);
+        const proxy = new URL('https://allorigins.hexlet.app/get');
+        proxy.search = `url=${encodeURIComponent(url)}&disableCache=true`;
         if (!state.addedUrl.includes(href)) {
-          axios.get(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&disableCache=true`)
+          axios.get(proxy)
             .then((d) => {
             // Use parser to data
               const data = parser.parseFromString(d.data.contents, 'text/html');
