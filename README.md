@@ -4,7 +4,7 @@ RSS aggregator - it's a simple app to convert RSS URL to readable app.
 
 ## Useges
 
-In this app we use HTML, CSS (bootstrap), JS (Webpack, i18next, yup).
+Just click [here](https://frontend-project-11-jhvpl6zsb-stepan19999993s-projects.vercel.app/).
 
 ## Requirements
 
