@@ -493,36 +493,29 @@ const app = () => {
     renderP();
   });
 
-  //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //    !!!!!!!!!!!!!!!!!!!!!!!! FOR LAST DEPLOY !!!!!!!!!!!!!!!!!!!!!!!!
-  //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // Get broweser languge
+  const browserL = navigator.language.slice(0, 2);
+  // Array of available languges
+  const avlLng = ['en', 'sp', 'ru'];
 
-  // // Get broweser languge
-  // const browserL = navigator.language.slice(0, 2);
-  // // Array of available languges
-  // const avlLng = ['en', 'sp'];
+  // Select broweser languge if we haven't cookie data and this languge available
 
-  // // Select broweser languge if we haven't cookie data and this languge available
-
-  // if (document.cookie === '' && !avlLng.includes(browserL)) {
-  //   site.setAttribute('lang', browserL);
-  //   i18next.changeLanguage(browserL);
-  //   selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
-  //   // Select defualt languge - eng
-  // } else if (document.cookie === '') {
-  //   site.setAttribute('lang', 'en');
-  //   i18next.changeLanguage('en');
-  //   selector.querySelector('option[value="en"]').setAttribute('selected', '');
-  // } else {
-  //   // Select languge what was in cookie
-  //   const lng = document.cookie.split('=')[1];
-  //   site.setAttribute('lang', lng);
-  //   i18next.changeLanguage(lng);
-  //   selector.querySelector(`option[value="${lng}"]`).setAttribute('selected', '');
-  // }
-
-  site.setAttribute('lang', 'ru');
-  i18next.changeLanguage('ru');
+  if (document.cookie === '' && !avlLng.includes(browserL)) {
+    site.setAttribute('lang', browserL);
+    i18next.changeLanguage(browserL);
+    selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
+    // Select defualt languge - eng
+  } else if (document.cookie === '') {
+    site.setAttribute('lang', 'en');
+    i18next.changeLanguage('en');
+    selector.querySelector('option[value="en"]').setAttribute('selected', '');
+  } else {
+    // Select languge what was in cookie
+    const lng = document.cookie.split('=')[1];
+    site.setAttribute('lang', lng);
+    i18next.changeLanguage(lng);
+    selector.querySelector(`option[value="${lng}"]`).setAttribute('selected', '');
+  }
 
   // Last prepare and... Done!
   renderP();
