@@ -20,7 +20,10 @@ You can try the live version of the app [here](https://frontend-project-11-jhvpl
 
 ## Requirements
 
-- Modern web browsers (Chrome, Firefox, Edge, etc.)
+- **Node.js** (version 14.x or later)
+- **npm** (version 6.x or later) or **yarn**
+- **Git** for version control
+- Modern web browser for testing (Chrome, Firefox, Edge, etc.)
 
 ## Installation (Optional for Local Development)
 
