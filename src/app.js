@@ -4,7 +4,7 @@ import { string } from 'yup';
 import axios from 'axios';
 
 // Custom stuff
-import { eng, esp } from './lang';
+import { eng, esp, ger } from './lang';
 
 const allElements = {
   autoUpdateSwitchT: document.querySelector('.text-switch'),
@@ -61,6 +61,7 @@ const app = () => {
     resources: {
       en: eng,
       sp: esp,
+      gr: ger,
     },
   });
 
@@ -317,7 +318,7 @@ const app = () => {
     status.setAttribute('class', 'feedback m-9 position-absolute small text-success');
     input.value = '';
     input.focus();
-    status.innerHTML = i18next.t('succeses');
+    status.innerHTML = i18next.t('success');
 
     // Enable input and btn
     input.removeAttribute('disabled');
@@ -393,7 +394,12 @@ const app = () => {
   // Add event on submit
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // validate data
+
+    // Disable input
+    input.setAttribute('disabled', '');
+    textB.setAttribute('disabled', '');
+
+    // Validate data
     string().url().required().validate(input.value.trim())
       .then((url) => {
         const { href } = new URL('/', url);
@@ -495,7 +501,7 @@ const app = () => {
   // Get broweser languge
   const browserL = navigator.language.slice(0, 2);
   // Array of available languges
-  const avlLng = ['en', 'sp'];
+  const avlLng = ['en', 'sp', 'gr'];
 
   // Select broweser languge if we haven't cookie data and this languge available
   if (document.cookie === '' && !avlLng.includes(browserL)) {
