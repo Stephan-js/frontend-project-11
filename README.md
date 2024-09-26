@@ -1,15 +1,50 @@
-# RSS aggregator
+# RSS Aggregator
 
-RSS aggregator - it's a simple app to convert RSS URL to readable app.
+**RSS Aggregator** is a simple web application that converts RSS feeds into a user-friendly, readable format. It helps users keep up with their favorite blogs, news sources, or any content provided via RSS feeds in a clean, easy-to-read interface.
 
-### Useges
+## Features
 
-Just click [here](https://frontend-project-11-jhvpl6zsb-stepan19999993s-projects.vercel.app/).
+- Convert RSS feed URLs into an easy-to-read list.
+- View updates from multiple feeds in one place.
+- User-friendly interface for streamlined RSS consumption.
 
-### Requirements
+## Demo
 
-- Browsers
+You can try the live version of the app [here](https://frontend-project-11-jhvpl6zsb-stepan19999993s-projects.vercel.app/).
 
-### Badges
+## Usage
 
-<a href="https://codeclimate.com/github/Stepan19999993/frontend-project-11/maintainability"><img src="https://api.codeclimate.com/v1/badges/c68d1f9fda767dbf3d35/maintainability" /></a>
+1. Enter the URL of an RSS feed you want to follow.
+2. The app will fetch and display the feed in a readable format.
+3. Add multiple RSS feeds to aggregate content from different sources.
+
+## Requirements
+
+- Modern web browsers (Chrome, Firefox, Edge, etc.)
+
+## Installation (Optional for Local Development)
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Stephan-js/frontend-project-11.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd frontend-project-11
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Run the app:
+    ```bash
+    npm build
+    ```
+
+## Badges
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/c68d1f9fda767dbf3d35/maintainability)](https://codeclimate.com/github/Stepan19999993/frontend-project-11/maintainability)
+
+---
+
+Developed with ❤️ by [Stephan](https://github.com/Stephan-js)
