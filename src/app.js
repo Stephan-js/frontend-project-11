@@ -4,7 +4,7 @@ import { string } from 'yup';
 import axios from 'axios';
 
 // Custom stuff
-import { eng, esp, rus } from './lang';
+import { eng, esp } from './lang';
 
 const allElements = {
   autoUpdateSwitchT: document.querySelector('.text-switch'),
@@ -61,7 +61,6 @@ const app = () => {
     resources: {
       en: eng,
       sp: esp,
-      ru: rus,
     },
   });
 
@@ -496,17 +495,18 @@ const app = () => {
   // Get broweser languge
   const browserL = navigator.language.slice(0, 2);
   // Array of available languges
-  const avlLng = ['en', 'sp', 'ru'];
+  const avlLng = ['en', 'sp'];
 
   // Select broweser languge if we haven't cookie data and this languge available
   if (document.cookie === '' && !avlLng.includes(browserL)) {
     site.setAttribute('lang', browserL);
     i18next.changeLanguage(browserL);
     selector.querySelector(`option[value="${browserL}"]`).setAttribute('selected', '');
+    // Select default languge (English)
   } else if (document.cookie === '') {
-    site.setAttribute('lang', 'ru');
-    i18next.changeLanguage('ru');
-    selector.querySelector('option[value="ru"]').setAttribute('selected', '');
+    site.setAttribute('lang', 'en');
+    i18next.changeLanguage('en');
+    selector.querySelector('option[value="en"]').setAttribute('selected', '');
   } else {
     // Select languge what was in cookie
     const lng = document.cookie.split('=')[1];

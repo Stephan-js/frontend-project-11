@@ -58,34 +58,4 @@ const esp = {
   },
 };
 
-const rus = {
-  translation: {
-    succeses: 'RSS успешно загружен',
-    name: 'RSS агрегатор',
-    'auto-upt': 'Авто обновление',
-    'full-text': 'Смотреть всё',
-    desc: 'Описание',
-    date: 'Дата публикации',
-    feed: 'Источник',
-    lng: 'Язык',
-    cate: 'Категория',
-    description: 'Начните читать RSS сегодня! Это легко, это удобно.',
-    textUrl: 'Ссылка RSS',
-    button: 'Добавить',
-    feeds: 'Источники',
-    posts: 'Посты',
-    'btn-text': 'Просмотр',
-    'more-det': 'Развернуть',
-    'less-det': 'Сложить',
-    example: 'Пример: https://justinpot.com/feed',
-    error: {
-      loading: 'Ошибка сети',
-      'not-rss': 'Ресурс не содержит валидный RSS',
-      unspecific: 'Упс, что-то пошло не так!',
-      ValidationError: 'Ссылка должна быть валидным URL',
-      exist: 'RSS уже существует',
-    },
-  },
-};
-
-export { eng, esp, rus };
+export { eng, esp };
