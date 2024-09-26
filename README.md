@@ -2,12 +2,6 @@
 
 **RSS Aggregator** is a simple web application that converts RSS feeds into a user-friendly, readable format. It helps users keep up with their favorite blogs, news sources, or any content provided via RSS feeds in a clean, easy-to-read interface.
 
-## Features
-
-- Convert RSS feed URLs into an easy-to-read list.
-- View updates from multiple feeds in one place.
-- User-friendly interface for streamlined RSS consumption.
-
 ## Demo
 
 You can try the live version of the app [here](https://frontend-project-11-jhvpl6zsb-stepan19999993s-projects.vercel.app/).
