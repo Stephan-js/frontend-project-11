@@ -144,7 +144,7 @@ const app = () => {
 
               // Add feed data
               state.feeds.push({
-                lng: (lang) ? lang.innerHTML : 'Unknown',
+                lng: (lang) ? lang.innerHTML : undefined,
                 titleF,
                 href,
                 descriptionF,
@@ -173,7 +173,7 @@ const app = () => {
                     id: state.posts.length,
                     fId: feedId,
                     added: false,
-                    category: (category.length === 0) ? 'Unknown' : category.join(', '),
+                    category: (category.length === 0) ? undefined : category.join(', '),
                   });
                 });
               } catch {

@@ -45,8 +45,10 @@ const addFToBtn = (post, btn, states) => {
       data.push(`<p><b>${i18next.t('date')}</b>: 
         ${new Intl.DateTimeFormat(navigator.language).format(post.date)}</p>`);
       data.push(`<p><b>${i18next.t('feed')}</b>: ${states.feeds[post.fId].titleF}</p>`);
-      data.push(`<p><b>${i18next.t('cate')}</b>: ${post.category}.</p>`);
-      data.push(`<p><b>${i18next.t('lng')}</b>: ${states.feeds[post.fId].lng}.</p>`);
+      if (post.category) data.push(`<p><b>${i18next.t('cate')}</b>: ${post.category}.</p>`);
+      if (states.feeds[post.fId].lng) {
+        data.push(`<p><b>${i18next.t('lng')}</b>: ${states.feeds[post.fId].lng}.</p>`);
+      }
       data.push(`<p><b>ID</b>: ${post.id}</p>`);
       data.push(`<p><b>URL</b>: <a href="${post.hrefP}">${post.hrefP}</a></p>`);
 
