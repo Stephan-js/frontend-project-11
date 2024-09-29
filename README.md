@@ -35,7 +35,7 @@ You can try the live version of the app [here](https://frontend-project-11-jhvpl
     ```
 4. Run the app:
     ```bash
-    npm build
+    npm run build
     ```
 
 ## Badges
