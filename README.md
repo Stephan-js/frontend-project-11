@@ -4,7 +4,7 @@
 
 ## Demo
 
-You can try the live version of the app [here](https://hacer-rss.vercel.app).
+You can try the live version of the app [here](https://frontend-project-11-jhvpl6zsb-stepan19999993s-projects.vercel.app/).
 
 ## Usage
 
