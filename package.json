@@ -1,7 +1,6 @@
 {
-  "name": "@hexlet/code",
+  "name": "rss-aggregator",
   "version": "1.0.0",
-  "description": "My webpack project",
   "module": "import",
   "private": true,
   "repository": {
