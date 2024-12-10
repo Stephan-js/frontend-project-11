@@ -46,7 +46,7 @@ That's it! Open the app in your browser and enjoy.
 
 ## 🎖️ Badges
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/c68d1f9fda767dbf3d35/maintainability)](https://codeclimate.com/github/Stepan19999993/frontend-project-11/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/82cc6cff0074ef60c771/maintainability)](https://codeclimate.com/github/Stephan-js/frontend-project-11/maintainability)
 
 ---
 
